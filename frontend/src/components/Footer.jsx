@@ -62,7 +62,7 @@ const Footer = () => {
                 { label: "Custom Phone Cases", to: "/custom-mobilecase" },
                 { label: "Become a Owner", to: "/CaseCraftBusinessPage" },
                 { label: "Start Design", to: "/case-design" },
-                { label: "Gallery", to: "/#gallery" }
+                { label: "About US", to: "/about" }
               ].map((item) => (
                 <li key={item.label}>
                   <Link

@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 
 // Replace with your real images
 import machineHero from "../assets/vendingmachine-hero.png";
+import FullSizeVideo from "../components/home/FullSizeVideo";
 
 const CaseCraftBusinessPage = () => {
   const [activeTab, setActiveTab] = useState("investor");
@@ -118,6 +119,8 @@ const CaseCraftBusinessPage = () => {
           </div>
         </div>
       </section>
+
+         <FullSizeVideo/>
 
       {/* Why Partner */}
 <section className="py-24 md:py-32 bg-gradient-to-b from-[#124090] via-[#0f3a7a] to-[#0b305f]">
