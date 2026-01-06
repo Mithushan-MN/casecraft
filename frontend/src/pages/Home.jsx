@@ -10,6 +10,7 @@ import FinalCTA from "../components/home/FinalCTA";
 import HomeFAQ from "../components/home/HomeFAQ";
 import HomeTestimonials from "../components/home/HomeTestimonials";
 import CaseLaboratorySection from "../components/home/CaseLaboratorySection";
+import FullSizeVideo from "../components/home/FullSizeVideo";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -118,6 +119,7 @@ const Home = () => {
       <HeroSlider/>
 
       <CaseLaboratorySection/>
+      <FullSizeVideo/>
       
       {/* Services Grid */}
       <ChooseExperience/>

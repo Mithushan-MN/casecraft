@@ -6,8 +6,8 @@ export default function PhoneCaseFAQ() {
 
   const faqs = [
     {
-      question: "Can I put multiple pets or people on one phone case?",
-      answer: "Yes! We specialize in multi-pet and family collages. You can add up to 6 faces on most cases. Our designers will arrange them perfectly — just upload your photos and add instructions at checkout."
+      question: "Can I put multiple images on one phone case?",
+      answer: "Yes! We specialize in image collages. You can add multiple images on most cases. Our designers will arrange them perfectly — just upload your photos and add instructions at checkout."
     },
     {
       question: "Will my photo look blurry or pixelated?",

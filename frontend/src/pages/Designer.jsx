@@ -160,96 +160,69 @@ const Designer = () => {
     const [userCustomImage, setUserCustomImage] = useState(null);
 
     const addImageToCanvas = (dataUrl) => {
-        const canvas = canvasRef.current;
-        if (!canvas || !selectedModelId) return;
+    const canvas = canvasRef.current;
+    if (!canvas || !selectedModelId) return;
 
-        const model = models.find((m) => m._id === selectedModelId);
-        if (!model) return;
+    const model = models.find((m) => m._id === selectedModelId);
+    if (!model) return;
 
-        setUserCustomImage(dataUrl);
+    setUserCustomImage(dataUrl);
 
-        fabric.Image.fromURL(
-            dataUrl,
-            (img) => {
-                const existingObjects = canvas.getObjects().filter((obj) => obj.selectable);
-                existingObjects.forEach((obj) => canvas.remove(obj));
+    fabric.Image.fromURL(
+        dataUrl,
+        (img) => {
+            // Clear previous user-added selectable objects
+            const existingObjects = canvas.getObjects().filter((obj) => obj.selectable);
+            existingObjects.forEach((obj) => canvas.remove(obj));
 
-                if (model.mockupImage && model.coverArea) {
-                    const coverArea = model.coverArea;
-                    const coverX = canvas.width * coverArea.x;
-                    const coverY = canvas.height * coverArea.y;
-                    const coverWidth = canvas.width * coverArea.width;
-                    const coverHeight = canvas.height * coverArea.height;
+            // Define the printable/fit area using ratios (tweak these per model if needed)
+            // You can later move these into your model data for per-model precision
+            const screenWidthRatio = 0.88;   // How much of canvas width is printable
+            const screenHeightRatio = 0.92;  // How much of height (leaves space for rounded corners/top-bottom)
+            const topOffsetRatio = 0.04;    // Push image down slightly to align with notch/camera
 
-                    const scaleX = coverWidth / img.width;
-                    const scaleY = coverHeight / img.height;
-                    const scale = Math.max(scaleX, scaleY);
+            const targetWidth = canvas.width * screenWidthRatio;
+            const targetHeight = canvas.height * screenHeightRatio;
 
-                    const scaledWidth = img.width * scale;
-                    const scaledHeight = img.height * scale;
-                    const left = coverX + (coverWidth - scaledWidth) / 2;
-                    const top = coverY + (coverHeight - scaledHeight) / 2;
+            // Scale to FILL the area (crop if aspect ratio doesn't match — looks professional)
+            const scale = Math.max(targetWidth / img.width, targetHeight / img.height);
 
-                    img.set({
-                        left,
-                        top,
-                        originX: "left",
-                        originY: "top",
-                        cornerColor: "#ffffff",
-                        cornerStyle: "circle",
-                        borderColor: "#fe7245",
-                        cornerStrokeColor: "#fe7245",
-                        transparentCorners: false,
-                        cornerSize: 14,
-                        rotatingPointOffset: 30,
-                        selectable: true,
-                        hasControls: true,
-                        hasBorders: true
-                    });
-                    img.scale(scale);
-                } else {
-                    const scaleX = canvas.width / img.width;
-                    const scaleY = canvas.height / img.height;
-                    const scale = Math.max(scaleX, scaleY);
+            const scaledWidth = img.width * scale;
+            const scaledHeight = img.height * scale;
 
-                    const scaledWidth = img.width * scale;
-                    const scaledHeight = img.height * scale;
-                    const left = (canvas.width - scaledWidth) / 2;
-                    const top = (canvas.height - scaledHeight) / 2;
+            img.set({
+                left: canvas.width / 2,
+                top: canvas.height / 2 + canvas.height * topOffsetRatio,
+                originX: "center",
+                originY: "center",
+                scaleX: scale,
+                scaleY: scale,
+                selectable: true,
+                hasControls: true,
+                hasBorders: true,
+                borderColor: "#fe7245",
+                cornerColor: "#ffffff",
+                cornerStrokeColor: "#fe7245",
+                cornerStyle: "circle",
+                transparentCorners: false,
+                cornerSize: 14,
+                rotatingPointOffset: 30,
+            });
 
-                    img.set({
-                        left,
-                        top,
-                        originX: "left",
-                        originY: "top",
-                        cornerColor: "#ffffff",
-                        cornerStyle: "circle",
-                        borderColor: "#fe7245",
-                        cornerStrokeColor: "#fe7245",
-                        transparentCorners: false,
-                        cornerSize: 14,
-                        rotatingPointOffset: 30,
-                        selectable: true,
-                        hasControls: true,
-                        hasBorders: true
-                    });
-                    img.scale(scale);
-                }
+            canvas.add(img);
+            canvas.setActiveObject(img);
 
-                canvas.add(img);
-                canvas.setActiveObject(img);
+            // Keep camera overlay on top
+            const cameraOverlay = canvas.getObjects().find((obj) => obj.name === "cameraOverlay");
+            if (cameraOverlay) {
+                cameraOverlay.bringToFront();
+            }
 
-                // Ensure camera overlay stays on top
-                const cameraOverlay = canvas.getObjects().find(obj => obj.name === "cameraOverlay");
-                if (cameraOverlay) {
-                    cameraOverlay.bringToFront();
-                }
-
-                canvas.renderAll();
-            },
-            { crossOrigin: "anonymous" }
-        );
-    };
+            canvas.renderAll();
+        },
+        { crossOrigin: "anonymous" }
+    );
+};
 
     const handleUpload = (event) => {
         const file = event.target.files?.[0];

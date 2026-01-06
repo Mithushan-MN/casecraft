@@ -109,13 +109,13 @@ export default function GallerySection() {
           {/* Header */}
           <div className="text-center mb-16">
             <p className="text-[#124090] font-bold uppercase tracking-widest text-sm mb-3">
-              Real Pets Real Cases
+              Real images Real Cases
             </p>
             <h2 className="text-5xl md:text-7xl font-black text-gray-900">
               Customer Gallery
             </h2>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Thousands of happy pets on phones every day
+              Thousands of happy faces on phones every day
             </p>
           </div>
 
@@ -168,7 +168,7 @@ export default function GallerySection() {
             </button>
 
             <p className="mt-6 text-gray-600 text-lg">
-              Tag <span className="text-[#124090] font-bold">@YourPetCase</span> to be featured!
+              Tag <span className="text-[#124090] font-bold">@instagram</span> to be featured!
             </p>
           </div>
 

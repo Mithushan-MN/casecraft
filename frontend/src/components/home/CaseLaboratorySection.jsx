@@ -34,7 +34,7 @@ export default function CaseLaboratorySection() {
             The exclusive reseller of the original <span className="font-bold text-[#FADC58]">phone case printing vending machines</span>
           </p>
           <Link
-            to="/case-laboratory"
+            to="/CaseCraftBusinessPage"
             className="mt-10 inline-flex items-center gap-4 bg-white text-[#124090] px-10 py-5 rounded-full text-xl font-bold shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all duration-300"
           >
             Learn More
@@ -127,7 +127,7 @@ export default function CaseLaboratorySection() {
             </ul>
 
             <Link
-              to="/case-laboratory/business"
+              to="/CaseCraftBusinessPage"
               className="inline-flex items-center gap-4 bg-white text-[#124090] px-10 py-5 rounded-full text-xl font-bold shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all duration-300"
             >
               Start Your Business Today

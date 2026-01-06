@@ -6,8 +6,8 @@ export default function HomeFAQ() {
 
  const faqs = [
   {
-    question: "Can I put multiple pets or people on one phone case?",
-    answer: "Absolutely! Our designers are collage experts. You can add up to 6 pets (or mix pets + people) on most cases. Just upload your photos — we’ll handle the rest and make it look stunning. Many customers do full family portraits!"
+    question: "Can I put multiple images on one phone case?",
+    answer: "Absolutely! Our designers are collage experts. You can add multiple on most cases. Just upload your photos — we’ll handle the rest and make it look stunning. Many customers do full family portraits!"
   },
   {
     question: "Do I get to see a proof before it prints?",

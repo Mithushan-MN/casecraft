@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo/casecraft-logo.png";
+import logo from "../assets/logo/logo2.png";
 import {
   Heart,
   Sparkles,
@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Brand & Love Message */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="CaseCraft Logo"  />
+              <img src={logo} alt="CaseCraft Logo"  className="h-24"/>
             </div>
             <p className="text-gray-300 text-lg leading-relaxed">
               We don’t just make phone cases — we help you keep your best memory with you, every single day.
@@ -161,7 +161,7 @@ const Footer = () => {
         <div className="mt-20 pt-10 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <p className="text-gray-400 text-sm">
-              © {year} <span className="text-[#FADC58] font-bold">CaseCraft</span>. Made with love for pet parents everywhere.
+              © {year} <span className="text-[#FADC58] font-bold">CaseCraft</span>. Keep your best memory with you.
             </p>
             <div className="flex items-center gap-8 text-sm text-gray-400">
               <Link to="/privacy" className="hover:text-[#FADC58] transition">Privacy Policy</Link>

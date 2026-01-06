@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Star, ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 
+import tesimg from "../../assets/custom/phonecase3.png"
+import tesimg2 from "../../assets/custom/Phonecase2.png"
+import tesimg3 from "../../assets/custom/phonecase5.png"
+import tesimg4 from "../../assets/custom/phonecase6.png"
+
 export default function HomeTestimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -8,34 +13,34 @@ export default function HomeTestimonials() {
     {
       id: 1,
       name: "Emma Rodriguez",
-      pet: "Golden Retriever 'Milo'",
-      text: "I cried when I opened the package. The photo quality is insane — Milo's eyes look so real I feel like he's always with me. Already ordered one for my mom!",
+      memory: "Family Vacation Photo",
+      text: "I cried when I opened the package. The print quality is incredible — the colors are so vibrant and sharp. It feels like that moment is always with me now!",
       model: "iPhone 15 Pro Max Tough Case",
-      img: "https://images.unsplash.com/photo-1548142813-c348350df52b?w=1200&q=80"
+      img: tesimg2
     },
     {
       id: 2,
       name: "Tyler & Sarah Kim",
-      pet: "Cats 'Mochi & Matcha'",
-      text: "We got matching cases with both our cats and everyone at work asks where we got them. The MagSafe is super strong and the print hasn’t faded at all after 4 months.",
-      model: "MagSafe Clear Case Duo",
-      img: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1200&q=80"
+      memory: "Wedding Portrait",
+      text: "We got matching cases with our wedding photo and everyone asks where we got them. The MagSafe works perfectly and the image still looks brand new after months of daily use.",
+      model: "MagSafe Clear Case",
+      img: tesimg3
     },
     {
       id: 3,
       name: "Jessica Miller",
-      pet: "French Bulldog 'Bruno'",
-      text: "I drop my phone daily (thanks Bruno zoomies). This case has saved my phone 3 times already. The raised edges actually work and the photo is still perfect.",
+      memory: "Graduation Day",
+      text: "I drop my phone all the time and this case has saved it multiple times. The raised edges actually protect the screen and camera — and my graduation photo still looks flawless.",
       model: "Heavy Duty Armor Case",
-      img: "https://images.unsplash.com/photo-1517423568366-697553f1e316?w=1200&q=80"
+      img: tesimg
     },
     {
       id: 4,
       name: "David Park",
-      pet: "Rescue Pup 'Luna'",
-      text: "Best gift I ever gave my girlfriend. She uses the memorial case of her childhood dog every day and says it helps her feel connected.",
-      model: "Rainbow Bridge Soft Case",
-      img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200&q=80"
+      memory: "Best Friend Portrait",
+      text: "Best gift I ever gave my partner. They use this case every day with our favorite photo together. The quality is amazing and it brings a smile every time they pick up their phone.",
+      model: "Soft Touch Premium Case",
+      img: tesimg4
     }
   ];
 
@@ -52,12 +57,12 @@ export default function HomeTestimonials() {
   const t = testimonials[currentIndex];
 
   return (
-<section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-[#032a6e] via-[#03152b] to-[#01050d]">
 
       {/* Background Glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-96 h-96 bg-[#FADC58]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#3065C5]/20 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
@@ -65,10 +70,10 @@ export default function HomeTestimonials() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-[#FADC58] font-bold uppercase tracking-widest text-sm mb-3">
-            100,000+ Happy Pet Parents
+            100,000+ Happy Customers
           </p>
           <h2 className="text-5xl md:text-7xl font-black text-white leading-tight">
-            Real Love.<br />Real Reviews.
+            Real Stories.<br />Real Memories.
           </h2>
         </div>
 
@@ -77,12 +82,12 @@ export default function HomeTestimonials() {
 
           <div className="grid md:grid-cols-2">
 
-            {/* Left: Pet Photo */}
+            {/* Left: Photo */}
             <div className="relative h-96 md:h-full overflow-hidden">
               <img
                 key={currentIndex}
                 src={t.img}
-                alt={t.pet}
+                alt={t.memory}
                 className="w-full h-full object-cover transition-opacity duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -104,7 +109,7 @@ export default function HomeTestimonials() {
               {/* Stars */}
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-7 h-7 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="w-7 h-7 fill-[#FADC58] text-[#FADC58]" />
                 ))}
               </div>
 
@@ -116,7 +121,7 @@ export default function HomeTestimonials() {
               {/* Author */}
               <div className="border-t border-white/20 pt-8">
                 <h4 className="text-2xl font-bold">{t.name}</h4>
-                <p className="text-lg text-gray-300 mt-1">Proud parent of {t.pet}</p>
+                <p className="text-lg text-gray-300 mt-1">Custom case featuring their {t.memory.toLowerCase()}</p>
                 <p className="text-sm font-bold text-[#FADC58] uppercase tracking-wider mt-4">
                   {t.model}
                 </p>
@@ -127,24 +132,17 @@ export default function HomeTestimonials() {
                 <div className="flex gap-4">
                   <button
                     onClick={prev}
-                    className="
-    p-3 sm:p-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full
-    bg-white/20 backdrop-blur-sm sm:backdrop-blur
-    hover:bg-white/30 transition-all group flex items-center justify-center"
+                    className="p-3 sm:p-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all group flex items-center justify-center"
                   >
                     <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform" />
                   </button>
 
                   <button
                     onClick={next}
-                    className="
-    p-3 sm:p-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full
-    bg-[#FADC58] hover:bg-blue-800 transition-all
-    group shadow-xl flex items-center justify-center"
+                    className="p-3 sm:p-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FADC58] text-[#124090] hover:bg-[#C79F2B] transition-all group shadow-xl flex items-center justify-center"
                   >
                     <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
                   </button>
-
                 </div>
 
                 {/* Dots */}
@@ -154,14 +152,13 @@ export default function HomeTestimonials() {
                       key={i}
                       onClick={() => setCurrentIndex(i)}
                       className={`
-    h-2 rounded-full transition-all duration-300
-    ${i === currentIndex
+                        h-2 rounded-full transition-all duration-300
+                        ${i === currentIndex
                           ? 'w-8 sm:w-12 bg-[#FADC58]'
-                          : 'w-3 sm:w-2 bg-white/40'
+                          : 'w-3 sm:w-4 bg-white/40'
                         }
-  `}
+                      `}
                     />
-
                   ))}
                 </div>
               </div>
