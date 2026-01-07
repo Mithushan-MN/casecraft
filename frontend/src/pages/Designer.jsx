@@ -306,125 +306,144 @@ const Designer = () => {
 
     return (
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8">
-            <div className="rounded-3xl bg-white p-6 shadow-sm">
-                <div className="flex flex-col gap-6 md:flex-row md:items-start">
-                    <div className="flex-1 space-y-4">
-                        <h1 className="text-2xl font-semibold text-slate-800">Design your cover</h1>
+  <div className="rounded-3xl bg-white p-4 sm:p-6 shadow-sm">
+    <div className="flex flex-col gap-8 lg:gap-6 lg:flex-row lg:items-start">
+      {/* Left Panel - Controls */}
+      <div className="flex-1 space-y-6">
+        <div className="space-y-4">
+          <h1 className="text-2xl font-semibold text-slate-800">Design your cover</h1>
 
-                        {/* ⭐ ADDED PRICE DISPLAY */}
-                        {selectedModel && (
-                            <p className="text-lg font-bold text-accent">
-                                Price: $ {selectedModel.price || 1000}
-                            </p>
-                        )}
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
-                                Product Model
-                                <select
-                                    value={selectedModelId}
-                                    onChange={(e) => {
-                                        setSelectedModelId(e.target.value);
-                                        setSelectedTemplateIndex(0);
-                                        setUserCustomImage(null);
-                                    }}
-                                    className="rounded-xl border border-slate-200 px-4 py-3"
-                                >
-                                    {models.map((m) => (
-                                        <option key={m._id} value={m._id}>
-                                            {m.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </label>
-
-                            <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
-                                Upload Your Image
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleUpload}
-                                    className="rounded-xl border border-dashed border-slate-300 px-4 py-3"
-                                />
-                            </label>
-                        </div>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
-                                Add Text
-                                <div className="flex gap-2">
-                                    <input
-                                        type="text"
-                                        value={textValue}
-                                        onChange={(e) => setTextValue(e.target.value)}
-                                        className="flex-1 rounded-xl border border-slate-200 px-4 py-3"
-                                        placeholder="Enter text"
-                                    />
-                                    <input
-                                        type="color"
-                                        value={textColor}
-                                        onChange={(e) => setTextColor(e.target.value)}
-                                        className="h-12 w-12 rounded-xl border border-slate-200"
-                                    />
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={handleAddText}
-                                    className="mt-2 inline-flex items-center justify-center rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark"
-                                >
-                                    Add Text
-                                </button>
-                            </label>
-                        </div>
-
-                        {templates.length > 0 && (
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-600">Select Cover Design</label>
-                                <div className="flex gap-3 overflow-x-auto pb-2">
-                                    {templates.map((template, index) => (
-                                        <button
-                                            key={index}
-                                            onClick={() => setSelectedTemplateIndex(index)}
-                                            className={`flex-shrink-0 rounded-lg border-2 p-1 transition-all ${selectedTemplateIndex === index
-                                                ? "border-accent bg-accent/10"
-                                                : "border-slate-200 hover:border-slate-300"
-                                                }`}
-                                        >
-                                            <img
-                                                src={template}
-                                                alt={`Cover ${index + 1}`}
-                                                className="h-20 w-12 rounded object-cover"
-                                            />
-                                        </button>
-                                    ))}
-                                </div>
-                                <p className="text-xs text-slate-500">
-                                    {selectedTemplateIndex + 1} of {templates.length} cover designs
-                                </p>
-                            </div>
-                        )}
-
-                        <p className="text-sm text-slate-500">
-                            Tip: Use high-resolution PNG/JPG files and avoid edges.
-                        </p>
-                        {status && <p className="text-sm text-red-500">{status}</p>}
-                        <button
-                            onClick={handleAddToCart}
-                            disabled={saving}
-                            className="rounded-2xl bg-accent px-6 py-3 text-white hover:bg-accent-dark disabled:opacity-60"
-                        >
-                            {saving ? "Adding..." : "Add to Cart"}
-                        </button>
-                    </div>
-
-                    <div className="flex flex-1 justify-center">
-                        <div className="rounded-[32px] border border-slate-200 bg-slate-900/5 p-4">
-                            <canvas ref={canvasEl} width={300} height={500} />
-                        </div>
-                    </div>
-                </div>
-            </div>
+          {/* Price Display */}
+          {selectedModel && (
+            <p className="text-lg font-bold text-accent">
+              Price: ${selectedModel.price || 1000}
+            </p>
+          )}
         </div>
+
+       {/* Product Model & Upload - Fully responsive for 320px */}
+<div className="grid gap-4 grid-cols-1 xs:grid-cols-2">
+  {/* If you don't have a custom 'xs' breakpoint, use this alternative: */}
+  {/* <div className="grid gap-4 grid-cols-1 min-[360px]:grid-cols-2"> */}
+
+  <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
+    Product Model
+    <select
+      value={selectedModelId}
+      onChange={(e) => {
+        setSelectedModelId(e.target.value);
+        setSelectedTemplateIndex(0);
+        setUserCustomImage(null);
+      }}
+      className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+    >
+      {models.map((m) => (
+        <option key={m._id} value={m._id}>
+          {m.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
+    Upload Your Image
+    <input
+      type="file"
+      accept="image/*"
+      onChange={handleUpload}
+      className="w-full rounded-xl border border-dashed border-slate-300 px-4 py-3 text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-medium file:text-white"
+    />
+  </label>
+</div>
+
+        {/* Add Text Section */}
+        <div className="space-y-3">
+          <label className="flex flex-col gap-2 text-sm font-medium text-slate-600">
+            Add Text
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="text"
+                value={textValue}
+                onChange={(e) => setTextValue(e.target.value)}
+                className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-sm"
+                placeholder="Enter text"
+              />
+              <input
+                type="color"
+                value={textColor}
+                onChange={(e) => setTextColor(e.target.value)}
+                className="h-12 w-full sm:w-12 rounded-xl border border-slate-200 cursor-pointer"
+                title="Choose text color"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleAddText}
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white hover:bg-accent-dark"
+            >
+              Add Text
+            </button>
+          </label>
+        </div>
+
+        {/* Templates Selector */}
+        {templates.length > 0 && (
+          <div className="space-y-3">
+            <label className="text-sm font-medium text-slate-600">Select Cover Design</label>
+            <div className="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300">
+              {templates.map((template, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedTemplateIndex(index)}
+                  className={`flex-shrink-0 snap-center rounded-lg border-2 p-1 transition-all ${
+                    selectedTemplateIndex === index
+                      ? "border-accent bg-accent/10"
+                      : "border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <img
+                    src={template}
+                    alt={`Cover ${index + 1}`}
+                    className="h-20 w-12 rounded object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-slate-500 text-center">
+              {selectedTemplateIndex + 1} / {templates.length}
+            </p>
+          </div>
+        )}
+
+        <div className="space-y-4">
+          <p className="text-xs text-slate-500">
+            Tip: Use high-resolution PNG/JPG files and avoid edges.
+          </p>
+          {status && <p className="text-sm text-red-500">{status}</p>}
+          <button
+            onClick={handleAddToCart}
+            disabled={saving}
+            className="w-full rounded-2xl bg-accent px-6 py-3.5 text-white hover:bg-accent-dark disabled:opacity-60 font-medium"
+          >
+            {saving ? "Adding..." : "Add to Cart"}
+          </button>
+        </div>
+      </div>
+
+      {/* Right Panel - Canvas Preview */}
+      <div className="flex flex-1 justify-center lg:justify-end">
+        <div className="rounded-[32px] border border-slate-200 bg-slate-900/5 p-4 w-full max-w-[280px] mx-auto lg:mx-0">
+          <canvas
+            ref={canvasEl}
+            width={300}
+            height={500}
+            className="w-full h-auto max-h-[500px] object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     );
 };
 

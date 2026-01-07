@@ -40,24 +40,24 @@ export default function AboutSection() {
               Every custom phone case is printed with love using eco-friendly inks and premium materials. Your happiness (and your photo looking perfect) is our obsession.
             </p>
 
-            {/* Glass Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12">
-              {[
-                { number: "100K+", label: "Cases Created", gradient: "from-[#FADC58] to-[#C79F2B]" },
-                { number: "4.9★", label: "Average Rating", gradient: "from-[#FADC58] to-[#C79F2B]" },
-                { number: "24hr", label: "Proof Turnaround", gradient: "from-[#3065C5] to-[#124090]" }
-              ].map((stat, i) => (
-                <div key={i} className="relative group">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-20 rounded-3xl blur-xl group-hover:opacity-40 transition-opacity duration-500`} />
-                  <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 text-center hover:bg-white/20 transition-all">
-                    <div className={`text-4xl md:text-5xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-300 text-sm mt-2 font-medium">{stat.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Glass Stats - Fully Mobile Responsive with Laptop Font Adjustment */}
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+  {[
+    { number: "100K+", label: "Cases Created", gradient: "from-[#FADC58] to-[#C79F2B]" },
+    { number: "4.9★", label: "Average Rating", gradient: "from-[#FADC58] to-[#C79F2B]" },
+    { number: "24hr", label: "Proof Turnaround", gradient: "from-[#3065C5] to-[#3065C5]" }
+  ].map((stat, i) => (
+    <div key={i} className="relative group">
+      <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-20 rounded-3xl blur-xl group-hover:opacity-40 transition-opacity duration-500`} />
+      <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 text-center hover:bg-white/20 transition-all">
+        <div className={`text-4xl sm:text-5xl lg:text-4xl xl:text-4xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+          {stat.number}
+        </div>
+        <div className="text-gray-300 text-sm mt-2 font-medium">{stat.label}</div>
+      </div>
+    </div>
+  ))}
+</div>
 
             <Link
               to="/about"
